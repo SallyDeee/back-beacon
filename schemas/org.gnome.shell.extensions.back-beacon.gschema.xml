@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<schemalist>
+
+    <schema
+        id="org.gnome.shell.extensions.back-beacon"
+        path="/org/gnome/shell/extensions/back-beacon/">
+
+        <key name="action" type="s">
+            <default>'automatic'</default>
+
+            <summary>Action when a dialog appears on another workspace</summary>
+
+            <description>
+                Choose whether to automatically switch to the workspace
+                containing the dialog, or display a clickable notification instead.
+            </description>
+        </key>
+
+    </schema>
+
+</schemalist>

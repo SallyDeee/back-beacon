@@ -1,0 +1,8 @@
+{
+    "uuid": "back-beacon@sallydeee.github.io",
+    "name": "Back Beacon",
+    "description": "Prevent apps from moving to other workspaces when they create dialogs.",
+    "settings-schema": "org.gnome.shell.extensions.back-beacon",
+    "shell-version": ["40", "41", "42", "43", "44"],
+    "url": "github.com/SallyDeee/back-beacon"
+}
