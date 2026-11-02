@@ -27,4 +27,4 @@ The extension works on gnome versions 40-44. It was tested on Rocky Linux 9 in g
 
 ## Installation
 
-It is recommend to install this extension from the gnome extensions homepage at [extensions.gnome.org](extensions.gnome.org).
+It is recommended to install this extension from the [gnome extensions page](https://extensions.gnome.org/extension/10930/back-beacon/).s
