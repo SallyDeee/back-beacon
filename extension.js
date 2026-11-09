@@ -6,7 +6,6 @@ const Meta = imports.gi.Meta;
 
 
 let settings = null;
-let source = null;
 let windowCreatedSignalId = null;
 let windowConnections = [];
 let timeoutSources = [];
@@ -27,8 +26,7 @@ function onWindowCreated(display, window) {
         return;
 
     // Flags to avoid repeating actions
-    let restoringWorkspace = false;
-    // let handled = false;
+    let handled = false;
 
     let action = settings.get_string("action");
 
@@ -47,15 +45,14 @@ function onWindowCreated(display, window) {
             );
 
             // We have already handled this dialog once. Ignore subsequent window actions.
-            if (restoringWorkspace)
+            if (handled)
                 return;
 
             // Dialog is already back in the workspace that spawned it. Do nothing.
             if (window.get_workspace() === originalWorkspace)
                 return;
 
-            // handled = true;
-            restoringWorkspace = true;
+            handled = true;
 
             // Move the dialog back to its original workspace, but first wait a short (5 ms)
             // interval for the window to become focused. Otherwise, moving the window back will
@@ -82,7 +79,6 @@ function onWindowCreated(display, window) {
                         showWorkspaceNotification(transientParent);
                     }
 
-                    restoringWorkspace = false;
                     return GLib.SOURCE_REMOVE;
                 }
             );
@@ -106,14 +102,17 @@ function showWorkspaceNotification(parentWindow) {
     if (!workspace)
         return;
 
+    let notificationSource = new MessageTray.SystemNotificationSource();
+    Main.messageTray.add(notificationSource);
+
     let parentTitle = parentWindow.get_wm_class() || "unknown";
 
     let ws_num = workspace.index() + 1;
 
     let notification =
         new MessageTray.Notification(
-            source,
-            "Back Beacon 🥓",
+            notificationSource,
+            "Back Beacon1 🥓",
             parentTitle + " on Workspace " + ws_num + " requests your attention."
         );
 
@@ -130,7 +129,7 @@ function showWorkspaceNotification(parentWindow) {
         }
     );
 
-    source.showNotification(notification);
+    notificationSource.showNotification(notification);
 }
 
 function init() {
@@ -140,10 +139,6 @@ function enable() {
 
     // Load settings
     settings = ExtensionUtils.getSettings();
-
-    // Prep the message tray for notifications
-    source = new MessageTray.SystemNotificationSource();
-    Main.messageTray.add(source);
 
     // Set up the callback
     windowCreatedSignalId =
@@ -180,8 +175,5 @@ function disable() {
 
     // Remove settings
     settings = null;
-
-    //Destroy message tray notification source
-    source?.destroy();
-    source = null;
 }
+
