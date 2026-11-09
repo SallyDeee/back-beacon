@@ -112,7 +112,7 @@ function showWorkspaceNotification(parentWindow) {
     let notification =
         new MessageTray.Notification(
             notificationSource,
-            "Back Beacon1 🥓",
+            "Back Beacon 🥓",
             parentTitle + " on Workspace " + ws_num + " requests your attention."
         );
 
