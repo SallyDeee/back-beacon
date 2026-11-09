@@ -19,7 +19,7 @@ following actions (depending on the prefs set by the user):
 <br>
 The desired behaviour can be selected in the extension settings:
 <br>
-<img width="516" height="400" alt="Back Beacon Prefs" src="https://github.com/user-attachments/assets/18312532-0588-4f4b-ae5b-8606eb3641f7" />
+<img width="651" height="461" alt="Screenshot 2026-11-08 at 17 17 27" src="https://github.com/user-attachments/assets/ce7ae94c-2742-4d35-bd47-7e853753533e" />
 
 ## Supported Platforms
 
